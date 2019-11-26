@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">Cadastrar</h5>
-                        <form class="form-signin">
+                        <form class="form-signin" action="User">
                             <div class="form-label-group">
                                 <input type="text" id="inputUserame" class="form-control" placeholder="Nome" required autofocus>
                                 <label for="inputUserame">Nome</label>

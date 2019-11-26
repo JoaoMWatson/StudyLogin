@@ -1,3 +1,9 @@
+<?php
+
+require "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
+
+?>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,11 +21,18 @@
 </head>
 
 <body>
+
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
 				<div class="card-header">
 					<h3>Olá!</h3>
+
+					<?php
+						showAlerts("success");
+						showAlerts("danger");
+					?>
+					
 				</div>
 				<div class="card-body">
 					<form action="" method="POST">

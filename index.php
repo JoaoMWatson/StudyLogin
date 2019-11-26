@@ -7,12 +7,8 @@ if(!isset($_SERVER["PATH_INFO"])){
 
 switch($_SERVER["PATH_INFO"]){
     case "/login":
+    case "/":
         require "/home/useless_guy/git/StudyLogin/app/views/login.php";
-        break;
-
-    case "/esqueci_minha_senha":
-    case "/recuperar_senha": 
-        require "/home/useless_guy/git/StudyLogin/app/views/recuperaSenha.php";
         break;
 
     case "/cadastro":
@@ -20,6 +16,12 @@ switch($_SERVER["PATH_INFO"]){
         require "/home/useless_guy/git/StudyLogin/app/views/cadastro.php";
         break;
 
+    case "/main_page";
+    case "/principal";
+        require "/home/useless_guy/git/StudyLogin/app/views/mainPage.php";
+        break;
+
+        
     default:
         echo "Sorry dude";
 }
