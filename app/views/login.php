@@ -1,6 +1,6 @@
 <?php
 
-require "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
+include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 
 ?>
 
@@ -22,20 +22,19 @@ require "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 
 <body>
 
+	<?php
+		showAlerts("success");
+		showAlerts("danger");
+	?>
+	
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
 				<div class="card-header">
 					<h3>Olá!</h3>
-
-					<?php
-						showAlerts("success");
-						showAlerts("danger");
-					?>
-					
 				</div>
 				<div class="card-body">
-					<form action="" method="POST">
+					<form action="app/controller/UserController.php?action=login" method="POST">
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -47,7 +46,7 @@ require "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="senha" class="form-control" placeholder="Senha">
+							<input type="password" name="pass" class="form-control" placeholder="Senha">
 						</div>
 						<div class="row align-items-center remember">
 							<input type="checkbox">Lembrar-me

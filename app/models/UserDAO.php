@@ -7,6 +7,7 @@ class UserDAO{
     public $nome;
     public $email;
     public $senha;
+    public $checkPass;
 
     private $connection;
 
@@ -16,20 +17,18 @@ class UserDAO{
     }
 
     public function cadastro($pass, $checkPass){
-        session_start();
-        if($pass == $checkPass){
-
-            $sql = "INSERT INTO pessoa VALUES (0, '$this->nome', $this->email', 
-            md5('$this->senha'))";
-
+        if(md5($pass) === md5($checkPass)){
+            $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$pass'))";
             $rs = $this->connection->query($sql);
 
+            session_start();
             if($rs){
-                header("Location: /login");
                 $_SESSION["success"] = "Cadastrado com sucesso";
+                header("Location: /login");
             }
             else{
-                echo $this->connection->error;
+                $_SESSION["danger"] = "erro ao cadastrar usuario";
+                header("Location: /cadastro?");
             }
         }
         else{
@@ -38,7 +37,7 @@ class UserDAO{
         }
     }
 
-    public function logar(){
+    public function login(){
         $sql = "SELECT * FROM pessoa WHERE email='$this->email' AND senha=md5('$this->senha')";
         $rs = $this->connection->query($sql);
 

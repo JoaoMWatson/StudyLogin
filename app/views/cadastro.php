@@ -1,3 +1,9 @@
+<?php
+
+include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
+
+?>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -9,10 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="web/css/cadastro.css">
     <title>Registre</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -22,26 +29,32 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">Cadastrar</h5>
-                        <form class="form-signin" action="User">
+                        
+                        <?php
+                            showAlerts("success");
+                            showAlerts("danger");
+                        ?>
+
+                        <form class="form-signin" action="app/controller/UserController.php?action=register" method="POST">
                             <div class="form-label-group">
-                                <input type="text" id="inputUserame" class="form-control" placeholder="Nome" required autofocus>
+                                <input type="text" name="name" id="inputUserame" class="form-control" placeholder="Nome" required autofocus>
                                 <label for="inputUserame">Nome</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
+                                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
                                 <label for="inputEmail">Email</label>
                             </div>
 
                             <hr>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                                <input type="password" name="pass" id="inputPassword" class="form-control" placeholder="Senha" required>
                                 <label for="inputPassword">Senha</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirmar Senha" required>
+                                <input type="password" name="checkPass" id="inputConfirmPassword" class="form-control" placeholder="Confirmar Senha" required>
                                 <label for="inputConfirmPassword">Confirmar senha</label>
                             </div>
 
@@ -56,4 +69,5 @@
         </div>
     </div>
 </body>
+
 </html>
