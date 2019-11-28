@@ -1,7 +1,6 @@
 <?php
 
 include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
-
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -21,12 +20,10 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 </head>
 
 <body>
-
 	<?php
 		showAlerts("success");
 		showAlerts("danger");
 	?>
-	
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">

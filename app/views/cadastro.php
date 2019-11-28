@@ -1,7 +1,6 @@
 <?php
 
 include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
-
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

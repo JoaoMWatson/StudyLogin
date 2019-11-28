@@ -17,21 +17,22 @@ class UserDAO{
     }
 
     public function cadastro($pass, $checkPass){
+        session_start();
+
         if(md5($pass) === md5($checkPass)){
             $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$pass'))";
             $rs = $this->connection->query($sql);
-
-            session_start();
             if($rs){
                 $_SESSION["success"] = "Cadastrado com sucesso";
                 header("Location: /login");
             }
+
             else{
                 $_SESSION["danger"] = "erro ao cadastrar usuario";
-                header("Location: /cadastro?");
+                header("Location: /cadastro");
             }
-        }
-        else{
+
+        }else{
             $_SESSION["danger"] = "senhas não coincidem";
             header("Location: /cadastro");
         }
@@ -40,17 +41,17 @@ class UserDAO{
     public function login(){
         $sql = "SELECT * FROM pessoa WHERE email='$this->email' AND senha=md5('$this->senha')";
         $rs = $this->connection->query($sql);
-
+        
+        session_start();
         if ($rs->num_rows > 0){
-            session_start();
             $_SESSION["logado"] = true;
             header("Location: /main_page");
         }
         else{
+            $_SESSION["danger"] = "Email ou senha incorretos";
             header("Location: /login");
         }
     }
-
 
 }
 
