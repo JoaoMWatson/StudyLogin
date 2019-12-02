@@ -7,33 +7,29 @@ class UserDAO{
     public $nome;
     public $email;
     public $senha;
-    public $checkPass;
 
-    private $connection;
+    public $connection;
 
     function __construct() {
         $this->connection = mysqli_connect(DB_SERVER, DB_USER, 
                                            DB_PASS, DB_NAME);
+        
     }
 
-    public function cadastro($pass, $checkPass){
-        session_start();
+    
 
-        if(md5($pass) === md5($checkPass)){
-            $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$pass'))";
-            $rs = $this->connection->query($sql);
-            if($rs){
-                $_SESSION["success"] = "Cadastrado com sucesso";
-                header("Location: /login");
-            }
+    /* alterar checagem para front com js... futuramente...*/
+    public function cadastro(){
+        $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$this->senha'))";
+        $rs = $this->connection->query($sql);
 
-            else{
-                $_SESSION["danger"] = "erro ao cadastrar usuario";
-                header("Location: /cadastro");
-            }
+        if($rs){
+            $_SESSION["success"] = "Cadastrado com sucesso";
+            header("Location: /login");
+        }
 
-        }else{
-            $_SESSION["danger"] = "senhas não coincidem";
+        else{
+            $_SESSION["danger"] = "erro ao cadastrar usuario";
             header("Location: /cadastro");
         }
     }
@@ -53,6 +49,17 @@ class UserDAO{
         }
     }
 
+    public function verifyMail(){
+        $sql = "SELECT * FROM pessoa WHERE email='$this->email'";
+        $rs = $this->connection->query($sql);
+        
+        session_start();
+        if ($rs->num_rows > 0)
+            return false;
+        else   
+            return true;
+    
+    }
 }
 
 ?>

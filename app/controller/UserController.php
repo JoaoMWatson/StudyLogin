@@ -4,16 +4,32 @@ include("/home/useless_guy/git/StudyLogin/app/models/UserDAO.php");
 
 $action = $_GET["action"];
 
+
 switch($action){
-    
+
     case "register":
-        $user = new UserDAO;
+        $user = new UserDAO();
         $user->nome = $_POST["name"];
         $user->email = $_POST["email"];
         $user->senha = $_POST["pass"];
         $checkPass = $_POST["checkPass"];
 
-        $user->cadastro($user->senha, $checkPass);
+        $verifyMail = $user->verifyMail();
+
+        if(md5($user->senha) === md5($checkPass)){
+            if($verifyMail === false){
+                $_SESSION["danger"] = "Email ja cadastrado";
+                header("Location: /cadastro");
+            break;
+            }
+            else{
+                $user->cadastro();
+            }
+        }
+        else{
+            $_SESSION["danger"] = "senhas não coincidem";
+            header("Location: /cadastro");
+        }
     break;
 
     case 'login':
