@@ -20,6 +20,9 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 </head>
 
 <body>
+    <a href="/login">
+        <img src="../../web/img/arrow.png" id="arrow-icon">
+    </a> 
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">

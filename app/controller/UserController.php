@@ -1,6 +1,7 @@
 <?php
 
 include("/home/useless_guy/git/StudyLogin/app/models/UserDAO.php");
+include("/home/useless_guy/git/StudyLogin/app/models/UserModel.php");
 
 $action = $_GET["action"];
 
@@ -23,7 +24,9 @@ switch($action){
             break;
             }
             else{
+                $sendMail = new UserModel();
                 $user->cadastro();
+                $sendMail->sendAccountVerification($user->email);
             }
         }
         else{

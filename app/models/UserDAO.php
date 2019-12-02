@@ -16,15 +16,14 @@ class UserDAO{
         
     }
 
-    
-
-    /* alterar checagem para front com js... futuramente...*/
     public function cadastro(){
         $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$this->senha'))";
         $rs = $this->connection->query($sql);
 
         if($rs){
-            $_SESSION["success"] = "Cadastrado com sucesso";
+            $_SESSION["success"] = "Cadastrado com sucesso,
+            você receberá um codigo por email, caso não apareça, 
+            verifique na sua caixa de span";
             header("Location: /login");
         }
 
@@ -56,9 +55,8 @@ class UserDAO{
         session_start();
         if ($rs->num_rows > 0)
             return false;
-        else   
+        else 
             return true;
-    
     }
 }
 
