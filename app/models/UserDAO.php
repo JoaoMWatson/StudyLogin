@@ -1,32 +1,35 @@
 <?php
 
-require "/home/useless_guy/git/StudyLogin/config/config.php";
+require_once "/home/useless_guy/git/StudyLogin/config/config.php";
+require_once "UserModel.php";
 
 class UserDAO{
     public $idPessoa;
     public $nome;
     public $email;
     public $senha;
+    
+    public $code;
 
     public $connection;
 
     function __construct() {
         $this->connection = mysqli_connect(DB_SERVER, DB_USER, 
                                            DB_PASS, DB_NAME);
-        
     }
 
     public function cadastro(){
-        $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$this->senha'))";
+        $userModel = new UserModel();
+        $code = $userModel->generateMailCode();
+        $sql = "INSERT INTO pessoa VALUES(0, '$this->nome', '$this->email', md5('$this->senha'), '$code', 0)";
         $rs = $this->connection->query($sql);
 
         if($rs){
-            $_SESSION["success"] = "Cadastrado com sucesso,
-            você receberá um codigo por email, caso não apareça, 
+            $_SESSION["success"] = "Cadastro efetuado com sucesso,
+            você receberá um codigo por email, 
             verifique na sua caixa de span";
             header("Location: /login");
         }
-
         else{
             $_SESSION["danger"] = "erro ao cadastrar usuario";
             header("Location: /cadastro");
@@ -34,7 +37,7 @@ class UserDAO{
     }
 
     public function login(){
-        $sql = "SELECT * FROM pessoa WHERE email='$this->email' AND senha=md5('$this->senha')";
+        $sql = "SELECT * FROM pessoa WHERE email='$this->email' AND senha=md5('$this->senha') AND confirmado=1";
         $rs = $this->connection->query($sql);
         
         session_start();
@@ -53,11 +56,37 @@ class UserDAO{
         $rs = $this->connection->query($sql);
         
         session_start();
-        if ($rs->num_rows > 0)
+        if ($rs->num_rows > 0){
             return false;
-        else 
+        }else{
             return true;
+        }
     }
+
+    public function verifyCode(){
+        $sql = "SELECT * FROM pessoa WHERE codigo='$this->code'";
+        $rs = $this->connection->query($sql);
+
+        session_start();
+        if ($rs->num_rows > 0)
+            return true;
+        else 
+            return false;
+    }
+
+    public function confirmAccount(){
+        $sql = "UPDATE pessoa SET confirmado = 1";
+        $rs = $this->connection->query($sql);
+
+        session_start();
+        if($rs){
+            $_SESSION["success"] = "Email confirmado com sucesso";
+            header("Location: /login");
+        }else{
+            header("Location: /verificar_conta");
+        }
+    }
+    
 }
 
 ?>

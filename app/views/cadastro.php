@@ -9,6 +9,7 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,16 +23,16 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 <body>
     <a href="/login">
         <img src="../../web/img/arrow.png" id="arrow-icon">
-    </a> 
+    </a>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">
-                <div class="card card-signin flex-row my-5">
+                <div class="card card-signin flex-row my-4">
                     <div class="card-img-left d-none d-md-flex">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">Cadastrar</h5>
-                        
+
                         <?php
                             showAlerts("success");
                             showAlerts("danger");

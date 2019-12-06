@@ -9,19 +9,22 @@ switch($_SERVER["PATH_INFO"]){
     case "/login":
     case "/":
         require "/home/useless_guy/git/StudyLogin/app/views/login.php";
-        break;
+    break;
 
     case "/cadastro":
     case "/cadastrar":
         require "/home/useless_guy/git/StudyLogin/app/views/cadastro.php";
-        break;
+    break;
 
     case "/main_page";
     case "/principal";
         require "/home/useless_guy/git/StudyLogin/app/views/mainPage.php";
-        break;
+    break;
 
-        
+    case "/verificar_conta":
+        require "/home/useless_guy/git/StudyLogin/app/views/verifyAccount.php";
+    break;
+
     default:
         echo "Sorry dude";
 }
