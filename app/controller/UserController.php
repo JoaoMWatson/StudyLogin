@@ -37,7 +37,7 @@ switch($action){
 
 
     case 'login':
-        $user = new UserDAO();
+        $user = new UserModel();
         $user->email = $_POST["email"];
         $user->senha = $_POST["pass"];
 
@@ -45,7 +45,7 @@ switch($action){
     break;
 
     case 'verifyCode':
-        $user = new UserDAO();
+        $user = new UserModel();
         $user->code = $_POST["code"];
 
         $confirmCode = $user->verifyCode();
@@ -56,6 +56,13 @@ switch($action){
             $_SESSION["danger"] = "Codigo incorreto";
             header("Location: /verificar_conta");
         }
+
+    case 'updatePassword':
+        $user = new UserModel();
+
+        $email = $_POST["email"];
+
+        $user->sendPasswordUpdate($email);
 }
 
 ?>

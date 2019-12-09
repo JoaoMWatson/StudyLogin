@@ -86,7 +86,35 @@ class UserDAO{
             header("Location: /verificar_conta");
         }
     }
+
+    public function getId($email){
+        $sql = "SELECT idPessoa FROM pessoa WHERE email='$email'";
+        $rs = $this->connection->query($sql);
+
+        if($rs){
+            $result = $rs->fetch_object();
+        }
+        else{
+            return false;
+        }
+    }
     
+    public function getPassword($email){
+        $sql = "SELECT senha FROM pessoa WHERE email='$email'";
+        $rs = $this->connection->query($sql);
+
+        if($rs){
+            $result = $rs->fetch_object();
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function updatePassword($newPass){
+        
+    }
+
 }
 
 ?>

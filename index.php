@@ -25,6 +25,11 @@ switch($_SERVER["PATH_INFO"]){
         require "/home/useless_guy/git/StudyLogin/app/views/verifyAccount.php";
     break;
 
+    case "/mudar_senha":
+        require "/home/useless_guy/git/StudyLogin/app/views/mudarSenha.php";
+    break;
+
+    
     default:
         echo "Sorry dude";
 }

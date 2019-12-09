@@ -78,15 +78,15 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="text-center">
-
-									<p>Digite seu email para nós lhe emviarmos uma nova senha</p>
+									<p>Digite seu email para nós lhe enviarmos uma nova senha</p>
 									<div class="panel-body">
-										<fieldset>
+										<form action="UserController.php?action=updatePassword" method="POST">
 											<div class="form-group">
 												<input class="form-control input-lg" placeholder="Email" name="email" type="email">
+												<br>
 											</div>
 											<input class="btn btn-lg btn-primary btn-block" value="Mande minha senha" type="submit">
-										</fieldset>
+										</form>
 									</div>
 								</div>
 							</div>
