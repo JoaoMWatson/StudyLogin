@@ -9,6 +9,7 @@
     ],
     "require": {
         "php": ">=5.2.8",
-        "phpmailer/phpmailer": "^6.1"
+        "phpmailer/phpmailer": "^6.1",
+        "phpdocumentor/phpdocumentor": "2.*"
     }
 }

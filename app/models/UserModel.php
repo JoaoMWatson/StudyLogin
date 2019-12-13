@@ -12,6 +12,9 @@ class UserModel extends UserDAO{
         $time_now = time();
         $code = $time_now/1000 * 0.9;
         return intval($code);
+        /**
+         * Return an random number based in a mathematic equation. 
+         */
     }
 
     public function sendVerifyCode($email, $name){
@@ -43,6 +46,8 @@ class UserModel extends UserDAO{
         }catch(Exception $e){
             $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
         }
+
+        /** Send email to user  */
     }
 
 }
