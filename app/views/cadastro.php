@@ -21,7 +21,7 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 </head>
 
 <body>
-    <a href="/login">
+    <a href="/">
         <img src="../../web/img/arrow.png" id="arrow-icon">
     </a>
     <div class="container">

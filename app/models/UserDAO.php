@@ -25,9 +25,7 @@ class UserDAO{
         $rs = $this->connection->query($sql);
 
         if($rs){
-            $_SESSION["success"] = "Cadastro efetuado com sucesso,
-            você receberá um codigo por email, 
-            verifique na sua caixa de span";
+            return true;
             header("Location: /login");
         }
         else{
@@ -85,34 +83,6 @@ class UserDAO{
         }else{
             header("Location: /verificar_conta");
         }
-    }
-
-    public function getId($email){
-        $sql = "SELECT idPessoa FROM pessoa WHERE email='$email'";
-        $rs = $this->connection->query($sql);
-
-        if($rs){
-            $result = $rs->fetch_object();
-        }
-        else{
-            return false;
-        }
-    }
-    
-    public function getPassword($email){
-        $sql = "SELECT senha FROM pessoa WHERE email='$email'";
-        $rs = $this->connection->query($sql);
-
-        if($rs){
-            $result = $rs->fetch_object();
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function updatePassword($newPass){
-        
     }
 
 }

@@ -23,13 +23,11 @@ switch($action){
                 $_SESSION["danger"] = "Email ja cadastrado";
                 header("Location: /cadastro");
             break;
-            }
-            else{
+            }else{
                 $userModel->cadastro();
-                $userModel->sendAccountVerification($userModel->email);
+                $userModel->sendVerifyCode($userModel->email, $userModel->nome);
             }
-        }
-        else{
+        }else{
             $_SESSION["danger"] = "senhas não coincidem";
             header("Location: /cadastro");
         }
@@ -56,13 +54,8 @@ switch($action){
             $_SESSION["danger"] = "Codigo incorreto";
             header("Location: /verificar_conta");
         }
+    break;
 
-    case 'updatePassword':
-        $user = new UserModel();
-
-        $email = $_POST["email"];
-
-        $user->sendPasswordUpdate($email);
 }
 
 ?>

@@ -1,0 +1,14 @@
+{
+    "name": "StudyProject",
+    "description": "Aplicação feita para estudo de web, futuramente será usado como site para visomes",
+    "authors": [
+        {
+            "name": "João Pedro",
+            "email": "joaopedro.wat22@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8",
+        "phpmailer/phpmailer": "^6.1"
+    }
+}

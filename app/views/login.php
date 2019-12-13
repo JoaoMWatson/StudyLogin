@@ -85,7 +85,7 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 												<input class="form-control input-lg" placeholder="Email" name="email" type="email">
 												<br>
 											</div>
-											<input class="btn btn-lg btn-primary btn-block" value="Mande minha senha" type="submit">
+											<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Mandar Email</button>
 										</form>
 									</div>
 								</div>

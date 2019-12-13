@@ -1,6 +1,10 @@
 <?php
 
 require_once "UserDAO.php";
+require_once "/home/useless_guy/git/StudyLogin/config/vendor/autoload.php";
+require_once "/home/useless_guy/git/StudyLogin/config/config.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class UserModel extends UserDAO{
 
@@ -10,33 +14,36 @@ class UserModel extends UserDAO{
         return intval($code);
     }
 
-    public function sendAccountVerification($mail){
+    public function sendVerifyCode($email, $name){
+        $mail = new PHPMailer(true);
         $code = $this->generateMailCode();
+        try{
+            $mail->Encoding = "base64";
+            $mail->isSMTP();
+            $mail->SMTPDebug = 2;
+            $mail->Port = 587;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = GMAIL_USER;
+            $mail->Password = GMAIL_PASS;
+            $mail->SMTPSecure = 'tls';
 
-        $to_email = $mail;
-        $subject = "Codigo de Verificação";
-        $headers = "From: noreplay @ PyQuest . com";
+            $mail->setFrom(GMAIL_USER, "Watson's Production");
+            $mail->addAddress("$email", "$name");
 
-        $msg = '<html><body>';
-        $msg .= '<h1 style="color: #2295f7;">Seu codigo é'.$code.'</h1>';
-        $msg .= 'Copie e cole seu codigo no link a seguir para validar sua conta';
-        $msg .= '<a>localhost:8080/verificar_conta</a>';
-        
-        try {
-            mail("$to_email", "$subject", "$msg", "$headers");
-        } catch (ErrorException $th) {
-            $_SESSION["danger"] = "Erro ao enviar email";
-            header("Location: /verificar_conta");
-            return false;
+            $mail->isHTML(true);
+            $mail->Subject = "Confirmação de conta";
+            $mail->Body = 'Olá '.$name.' <b>Seu codigo é '.$code.'.</b><br>
+            Acesse <a href="localhost:8080/verificar_conta">verificar_conta</a> e digite seu codigo';
+
+            $mail->send();
+            $_SESSION["success"] = "Cadastro efetuado com sucesso,
+            você receberá um codigo por email, 
+            verifique na sua caixa de span";
+        }catch(Exception $e){
+            $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
         }
     }
 
-    public function sendPasswordUpdate($email){
-        $code = $this->getPassword($email);
-
-        $to_email = $email;
-        $subject = "Mudança de senha";
-        $msg = "Para mudar a senha entre nesse link localhost:8080/$code";
-    }
 }
 ?>
