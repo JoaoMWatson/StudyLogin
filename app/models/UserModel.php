@@ -21,7 +21,7 @@ class UserModel extends UserDAO{
             $mail->Encoding = "base64";
             $mail->isSMTP();
             $mail->SMTPDebug = 2;
-            $mail->Port = 587;
+            $mail->Port = 587; 
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = GMAIL_USER;
