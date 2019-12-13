@@ -6,17 +6,36 @@ require_once "/home/useless_guy/git/StudyLogin/config/config.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/** 
+ * extends UserDAO, function without database interaction.
+ * */
 class UserModel extends UserDAO{
 
+        /**
+         * Return an random number based in a mathematic equation. 
+         * 
+         * @return int
+         */
     public function generateMailCode(){
         $time_now = time();
         $code = $time_now/1000 * 0.9;
         return intval($code);
-        /**
-         * Return an random number based in a mathematic equation. 
-         */
+        
     }
 
+
+    /**
+     * Use to send email before the register in system.
+     * 
+     * Using the module PHPMailer to send emails with a veryfication code
+     * using gmail server in my personal account created for this project
+     * base64 enconding, port 587, Secure TSL.
+     * 
+     * 
+     * @param string $email the recipient email address .
+     * @param string $name name of the user.
+     * 
+     */
     public function sendVerifyCode($email, $name){
         $mail = new PHPMailer(true);
         $code = $this->generateMailCode();
@@ -46,8 +65,6 @@ class UserModel extends UserDAO{
         }catch(Exception $e){
             $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
         }
-
-        /** Send email to user  */
     }
 
 }
