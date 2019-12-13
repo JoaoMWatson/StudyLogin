@@ -103,6 +103,16 @@ class UserDAO{
         }
     }
 
+    public function updatePassword($idPessoa){
+        $sql = "UPDATE pessoa SET senha WHERE idPessoa=$idPessoa";
+        $rs = $this->connection->query($sql);
+        
+        if ($rs->num_rows > 0)
+            return true;
+        else 
+            return false;
+    }
+
 }
 
 ?>
