@@ -20,7 +20,7 @@ switch($action){
 
         if(md5($checkPass) === md5($userModel->senha)){
             if($verifyMail === false){
-                $userModel->cadastro();
+                $userModel->register();
                 $userModel->sendVerifyEmail($userModel->email, $userModel->nome);
                 header("Location: /login");
             }else{

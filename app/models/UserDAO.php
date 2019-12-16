@@ -43,7 +43,7 @@ class UserDAO{
      * 
      * @return bool
      */
-    public function cadastro(){
+    public function register(){
         $userModel = new UserModel();
         $code = $userModel->generateMailCode();
 
