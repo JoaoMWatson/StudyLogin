@@ -11,11 +11,11 @@ use PHPMailer\PHPMailer\Exception;
  * */
 class UserModel extends UserDAO{
 
-        /**
-         * Return an random number based in a mathematic equation. 
-         * 
-         * @return int
-         */
+    /**
+     * Return an random number based in a mathematic equation. 
+     * 
+     * @return int
+     */
     public function generateMailCode(){
         $time_now = time();
         $code = $time_now/1000 * 0.9;
@@ -36,7 +36,7 @@ class UserModel extends UserDAO{
      * @param string $name name of the user.
      * 
      */
-    public function sendVerifyCode($email, $name){
+    public function sendVerifyEmail($email, $name){
         $mail = new PHPMailer(true);
         $code = $this->generateMailCode();
         try{
@@ -56,7 +56,8 @@ class UserModel extends UserDAO{
             $mail->isHTML(true);
             $mail->Subject = "Confirmação de conta";
             $mail->Body = 'Olá '.$name.' <b>Seu codigo é '.$code.'.</b><br>
-            Acesse <a href="localhost:8080/verificar_conta">verificar_conta</a> e digite seu codigo';
+            Acesse <a href="localhost:8080/verificar_conta">verificar_conta</a> 
+            e digite seu codigo';
 
             $mail->send();
             $_SESSION["success"] = "Cadastro efetuado com sucesso,
