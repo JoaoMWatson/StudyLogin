@@ -29,6 +29,9 @@ switch($_SERVER["PATH_INFO"]){
         require "../StudyLogin/app/views/changePass.php";
     break;
 
+    case "/reenviar_email":
+        require "../StudyLogin/app/views/resendMail.php";
+    break;
     
     default:
         echo "Sorry dude";

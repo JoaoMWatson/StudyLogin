@@ -126,6 +126,24 @@ class UserDAO{
             return false;
     }
 
+    /**
+     * get the code for user to reesend email
+     * 
+     * 
+     */
+
+    public function getCode($email){
+        $sql = "SELECT codigo FROM pessoa WHERE email='$email'";
+        $rs = $this->connection->query($sql);
+        $list = [];
+
+        while($line = $rs->fetch_assoc()){
+           $list[] = $line['codigo'];
+        }
+        $code = $list[0];
+        return $code;
+    }
+
 }
 
 ?>

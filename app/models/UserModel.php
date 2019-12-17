@@ -18,7 +18,7 @@ class UserModel extends UserDAO{
      */
     public function generateMailCode(){
         $time_now = time();
-        $code = $time_now/1000 * 0.9;
+        $code = $time_now/1000 * 0.8 - 350;
         return intval($code);
         
     }
@@ -36,11 +36,16 @@ class UserModel extends UserDAO{
      * @param string $name name of the user.
      * 
      */
-    public function sendVerifyEmail($email, $name){
+    public function sendVerifyEmail($email, $name = ""){
+        header('Content-Type: text/html; charset=utf-8');
         $mail = new PHPMailer(true);
-        $code = $this->generateMailCode();
+
+        if($name == "")
+            $code = $this->getCode($email);
+        else
+            $code = $this->generateMailCode();
+        
         try{
-            $mail->Encoding = "base64";
             $mail->isSMTP();
             $mail->SMTPDebug = 2;
             $mail->Port = 587; 
@@ -56,15 +61,19 @@ class UserModel extends UserDAO{
             $mail->isHTML(true);
             $mail->Subject = "Confirmação de conta";
             $mail->Body = 'Olá '.$name.' <b>Seu codigo é '.$code.'.</b><br>
-            Acesse <a href="localhost:8080/verificar_conta">verificar_conta</a> 
+            Acesse <a href="http://localhost:8080/verificar_conta"> Verificar Conta</a> 
             e digite seu codigo';
 
             $mail->send();
-            $_SESSION["success"] = "Cadastro efetuado com sucesso,
-            você receberá um codigo por email, 
-            verifique na sua caixa de span";
+            // $_SESSION["success"] = 'Cadastro efetuado com sucesso,
+            // você receberá um codigo por email. 
+            // Caso não tenha recebido <a href="http://localhost:8080/reenviar_email"> Clique aqui</a>
+            // para que possamos reenviar o seu codigo';
+            return true;
+
         }catch(Exception $e){
-            $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
+            // $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
+            return false;
         }
     }
 
