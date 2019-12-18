@@ -1,7 +1,7 @@
 <?php
 
 require_once "UserDAO.php";
-require_once "/home/useless_guy/git/StudyLogin/config/vendor/autoload.php";
+require_once "/home/useless_guy/git/StudyLogin/vendor/autoload.php";
 require_once "/home/useless_guy/git/StudyLogin/config/config.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
