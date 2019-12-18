@@ -1,8 +1,6 @@
 <?php
-require "/home/useless_guy/git/StudyLogin/app/utils/verifySession.php";
-include "/home/useless_guy/git/StudyLogin/app/models/UserModel.php";
+require "../StudyLogin/app/utils/verifySession.php";
 
-$user = new UserModel();
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,6 @@ $user = new UserModel();
     <title>Main pagina</title>
 </head>
 <body>
-    <h1>Olá <?=$user->nome?></h1>
+    <h1>Olá</h1>
 </body>
 </html>

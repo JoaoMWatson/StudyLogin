@@ -29,7 +29,7 @@ class UserModel extends UserDAO{
      * 
      * Using the module PHPMailer to send emails with a veryfication code
      * using gmail server in my personal account created for this project
-     * base64 enconding, port 587, Secure TSL.
+     * utf-8 enconding, port 587, Secure TSL.
      * 
      * 
      * @param string $email the recipient email address .
@@ -65,14 +65,9 @@ class UserModel extends UserDAO{
             e digite seu codigo';
 
             $mail->send();
-            // $_SESSION["success"] = 'Cadastro efetuado com sucesso,
-            // você receberá um codigo por email. 
-            // Caso não tenha recebido <a href="http://localhost:8080/reenviar_email"> Clique aqui</a>
-            // para que possamos reenviar o seu codigo';
             return true;
 
         }catch(Exception $e){
-            // $_SESSION["danger"] = "Erro ao enviar email".$mail->ErrorInfo;
             return false;
         }
     }
