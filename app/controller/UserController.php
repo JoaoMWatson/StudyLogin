@@ -92,4 +92,18 @@ switch($action){
         
     break;
 
+    case 'updatePassword':
+        $userModel = new UserModel();
+        $email = $_POST["email"];
+
+        session_start();
+        if($userModel->sendChangePassEmail($email)){
+            $_SESSION["success"] = "Email enviado com sucesso!";
+            header("Location: /login");
+        }else{
+            $_SESSION["danger"] = 'Erro ao enviar email';
+            header("Location: /login");
+        }
+    break;
+
 }

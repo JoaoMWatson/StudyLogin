@@ -55,14 +55,14 @@ class UserModel extends UserDAO{
             $mail->Password = GMAIL_PASS;
             $mail->SMTPSecure = 'tls';
 
-            $mail->setFrom(GMAIL_USER, "Watson's Production");
+            $mail->setFrom(GMAIL_USER, GMAIL_NAME);
             $mail->addAddress("$email", "$name");
 
             $mail->isHTML(true);
-            $mail->Subject = "Confirmação de conta";
-            $mail->Body = 'Olá '.$name.' <b>Seu codigo é '.$code.'.</b><br>
-            Acesse <a href="http://localhost:8080/verificar_conta"> Verificar Conta</a> 
-            e digite seu codigo';
+            $mail->Subject = utf8_decode("Confirmação de conta");
+            $mail->Body = "Olá $name <b>Seu codigo é $code.</b><br>
+            Acesse <a href='http://localhost:8080/verificar_conta'> Verificar Conta</a> 
+            e digite seu codigo";
 
             $mail->send();
             return true;
@@ -71,6 +71,46 @@ class UserModel extends UserDAO{
             return false;
         }
     }
+
+    /**
+     * Send email with a link to update the user password
+     * 
+     * @param email
+     * 
+     * @return boolean
+     */
+    public function sendChangePassEmail($email){
+        header('Content-Type: text/html; charset=utf-8');
+
+        $mail = new PHPMailer(true);
+
+        $code = $this->getCode($email);
+
+        try{
+            $mail->isSMTP();
+            $mail->SMTPDebug = 2;
+            $mail->Port = 587; 
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = GMAIL_USER;
+            $mail->Password = GMAIL_PASS;
+            $mail->SMTPSecure = 'tls';
+
+            $mail->setFrom(GMAIL_USER, GMAIL_NAME);
+            $mail->addAddress("$email");
+
+            $mail->isHTML(true);
+            $mail->Subject = utf8_encode("Troca de senha");
+            $mail->Body = "Para trocar sua senha, favor entre neste link:
+            <a href='http://localhost:8080/mudar_senha?code=$code'>Trocar Senha</a>";
+
+            $mail->send();
+            return true;
+
+        }catch(Exception $e){
+            return false;
+        }
+    } 
 
 }
 ?>

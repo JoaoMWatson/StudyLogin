@@ -80,7 +80,7 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 								<div class="text-center">
 									<p>Digite seu email para nós lhe enviarmos uma nova senha</p>
 									<div class="panel-body">
-										<form action="UserController.php?action=updatePassword" method="POST">
+										<form action="app/controller/UserController.php?action=updatePassword" method="POST">
 											<div class="form-group">
 												<input class="form-control input-lg" placeholder="Email" name="email" type="email">
 												<br>
