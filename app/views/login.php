@@ -1,6 +1,6 @@
 <?php
 
-include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
+include "../StudyLogin/app/utils/alerts.php";
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -80,7 +80,7 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
 								<div class="text-center">
 									<p>Digite seu email para nós lhe enviarmos uma nova senha</p>
 									<div class="panel-body">
-										<form action="app/controller/UserController.php?action=updatePassword" method="POST">
+										<form action="app/controller/UserController.php?action=sendPassChange" method="POST">
 											<div class="form-group">
 												<input class="form-control input-lg" placeholder="Email" name="email" type="email">
 												<br>

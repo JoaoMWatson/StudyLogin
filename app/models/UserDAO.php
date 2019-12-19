@@ -116,11 +116,11 @@ class UserDAO{
      * 
      * @return bool
      */
-    public function updatePassword($idPessoa){
-        $sql = "UPDATE pessoa SET senha WHERE idPessoa=$idPessoa";
+    public function updatePassword($code, $newPass){
+        $sql = "UPDATE pessoa SET senha=md5('$newPass') WHERE codigo=$code";
         $rs = $this->connection->query($sql);
         
-        if ($rs->num_rows > 0)
+        if ($rs)
             return true;
         else 
             return false;

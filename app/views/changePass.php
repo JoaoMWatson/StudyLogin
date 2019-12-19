@@ -1,6 +1,10 @@
 <?php
 
-include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
+include "../StudyLogin/app/utils/alerts.php";
+include "../StudyLogin/app/models/UserDAO.php";
+
+$code = $_GET["code"];
+
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +40,10 @@ include "/home/useless_guy/git/StudyLogin/app/utils/alerts.php";
                         showAlerts("danger");
                         ?>
 
-                        <form class="form-signin" action="" method="POST">
+                        <form class="form-signin" action="app/controller/UserController.php?action=changePass" method="POST">
                             <div class="form-label-group">
-                                <input type="password" name="" id="inputUserame" class="form-control" placeholder="Codigo de Verificação" required autofocus>
+                                <input type="hidden" name="code" value="<?= $code ?>"></input>
+                                <input type="password" name="newPass" id="inputUserame" class="form-control" placeholder="Codigo de Verificação" required autofocus>
                                 <label for="inputUserame">Sua nova senha</label>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Enviar</button>

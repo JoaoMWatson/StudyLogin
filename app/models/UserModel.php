@@ -6,7 +6,8 @@ require_once "/home/useless_guy/git/StudyLogin/config/config.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-/** 
+
+/**  
  * extends UserDAO, function without database interaction.
  * */
 class UserModel extends UserDAO{

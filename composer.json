@@ -12,4 +12,5 @@
         "phpmailer/phpmailer": "^6.1",
         "phpdocumentor/phpdocumentor": "2.*"
     }
+    
 }

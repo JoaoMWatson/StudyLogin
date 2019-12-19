@@ -6,7 +6,7 @@ require_once("/home/useless_guy/git/StudyLogin/app/models/UserModel.php");
 $action = $_GET["action"];
 
 
-switch($action){
+switch($action){ 
 
     case "register":
         $userModel = new UserModel();
@@ -92,7 +92,7 @@ switch($action){
         
     break;
 
-    case 'updatePassword':
+    case 'sendPassChange':
         $userModel = new UserModel();
         $email = $_POST["email"];
 
@@ -104,6 +104,22 @@ switch($action){
             $_SESSION["danger"] = 'Erro ao enviar email';
             header("Location: /login");
         }
+
     break;
 
+    case 'changePass':
+        $userModel = new UserModel();
+        $code = $_POST["code"];
+        $newPass = $_POST["newPass"];
+
+        session_start();
+        if($userModel->updatePassword($code, $newPass)){
+            $_SESSION["success"] = "Senha trocada com sucesso";
+            header("Location: /login");
+        }else{
+            $_SESSION["danger"] = 'Erro ao trocar senha';
+            header("Location: /mudar_senha");
+        }
+
+    break;
 }

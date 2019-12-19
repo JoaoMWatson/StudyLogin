@@ -6,4 +6,5 @@ if(!isset($_SESSION) || !isset($_SESSION["logado"])){
     exit();
 }
 
+
 ?>
